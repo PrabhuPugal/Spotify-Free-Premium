@@ -1,0 +1,209 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <title>Big Mart Sales Prediction</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Style.css')}}">
+
+      <style>
+          body{
+              #background: #4d0026;
+              background: linear-gradient(to left, #667292 0%, #a2b9bc 100%);
+          }
+
+          footer a{
+            color: #fff;
+          }
+          footer a:hover{
+            color: #fff;
+          }
+          .centerdiv{
+            height: 15vh;
+            display: flex;
+            #justify-content: center;
+            align-items: center;
+          }
+          .centerdiv a{
+            height: 30px;
+            width: 30px;
+            background-color: #f5f6fa;
+            border-radius: 50px;
+            text-align: center;
+            margin: 5px;
+            line-height: 30px;
+            #box-shadow: 1px 4px 2px 2px #dcdde1;
+            position: relative;
+            overflow: hidden;
+          }
+          .centerdiv a i{
+            transition: all 0.3s linear;
+          }
+          .centerdiv a:hover i{
+            transform: scale(1.5);
+            color: #f5f6fa;
+          }
+          .centerdiv a:before{
+            content: "";
+            width: 120%; height: 120%;
+            position: absolute;
+            top: 90%; left: -50%;
+            background-color: #00a8ff;
+            transform: rotate(60deg);
+          }
+
+          .centerdiv a:hover:before{
+            animation: socialicons 0.8s 1;
+            animation-fill-mode: forwards;
+          }
+          @keyframes socialicons {
+
+            0%{ top: 90%; left: -50%;}
+            50%{ top: -60%; left: -10%;}
+            100%{ top: -10%; left: -10%}
+          }
+
+          .fa-facebook-f{
+            color: #e84393;
+          }
+          .fa-instagram{
+            color: #e84393;
+          }
+          .fa-github{
+            color: #e84118;
+          }
+          .fa-linkedin{
+            color: #0097e6;
+          }
+          .fa-twitter{
+            color: #0097e6;
+          }
+      </style>
+
+    </head>
+
+    <body>
+
+      <h1>
+        <div style ="text-align:center">
+          <font color='white'>
+            Big Mart Sales Prediction
+          </font>
+        </div>
+      </h1>
+      <br>
+
+
+     <div class="wrapper">
+       <div class="container my-5">
+         <div class="row">
+           <div class="col-md-10 col-sm-6 mx-auto">
+             <form class="" action="/predict" method="post">
+
+	               <div class="form-group">
+                 <input type="text" name="item_weight" id="item_weight" class="form-control" required>
+                 <label for="item_weight" class="ph-area">Enter Item Weight</label>
+
+
+               <div class="form-group">
+                 <select class="form-control" name="item_fat_content" required="required">
+                   <option value="" selected>Item Fat Content</option>
+                   <option value="1">Low Fat</option>
+                   <option value="2">Regular</option>
+		   <option value="0">High Fat</option>
+                 </select>
+               </div>
+		   <div class="form-group">
+                 <input type="text" name="item_visibility" id="item_visibility" class="form-control" required>
+                 <label for="item_visibility" class="ph-area">Enter Item Visibility</label>
+               </div>
+
+
+               <div class="form-group">
+                 <select class="form-control chosenn" name="item_type" required="required">
+               </div>
+                   <option value="" selected>Item Type</option>
+                   <option value="0">Baking Goods</option>
+                   <option value="1">Breads</option>
+                   <option value="2">Breakfast</option>
+                   <option value="3">Canned</option>
+		   <option value="4">Dairy</option>
+                   <option value="5">Frozen Foods</option>
+                   <option value="6">Fruits and Vegetables</option>
+                   <option value="7">Hard Drinks</option>
+		   <option value="8">Health and Hygiene</option>
+                   <option value="9">Household</option>
+                   <option value="10">Meat</option>
+                   <option value="11">Others</option>
+		   <option value="12">Seafood</option>
+                   <option value="13">Snack Foods</option>
+                   <option value="14">Soft Drinks</option>
+                   <option value="15">Starchy Foods</option>
+                 </select>
+                 </select>
+               </div>
+
+
+
+               <div class="form-group">
+                 <input type="text" name="item_mrp" id="item_mrp" class="form-control" required>
+                 <label for="item_mrp" class="ph-area">Enter Item MRP</label>
+               </div>
+
+              <div class="form-group">
+                 <input type="text" name="outlet_establishment_year" id="outlet_establishment_year" class="form-control" required>
+                 <label for="outlet_establishment_year" class="ph-area">Outlet Establishment Year (YYYY)</label>
+               </div>
+
+
+
+               <div class="form-group">
+                 <select class="form-control chosenn" name="outlet_size" required="required">
+                   <option value="" selected>outlet_size</option>
+                   <option value="0">High</option>
+                   <option value="1">Medium</option>
+                   <option value="2">Small</option>
+                 </select>
+               </div>
+
+              <div class="form-group">
+                 <select class="form-control chosenn" name="outlet_location_type" required="required">
+                   <option value="" selected>outlet_location_type</option>
+                   <option value="0">Tier 1</option>
+                   <option value="1">Tier 2</option>
+                   <option value="2">Tier 3</option>
+                 </select>
+               </div>
+
+               <div class="form-group">
+                 <select class="form-control chosenn" name="outlet_type" required="required">
+                   <option value="" selected>outlet_type</option>
+                   <option value="0">Grocery Store</option>
+                   <option value="1">Supermarket Type1</option>
+                   <option value="2">Supermarket Type2</option>
+		   <option value="3">Supermarket Type3</option>
+                 </select>
+               </div>
+
+
+             <div class="form-group">
+               <input type="submit" class="btn btn-primary" value="Submit">
+               <input type="reset" class="btn btn-danger" value="Reset">
+             </div>
+           </form>
+           </div>
+         </div>
+       </div>
+     </div>
+
+
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+
+  </html>
